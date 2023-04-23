@@ -38,7 +38,9 @@ app.post('/signup', async (req, res) => {
 
             res.cookie("jwt", token, {
                 expires: new Date(Date.now() + 86400000),
-                httpOnly: true
+                httpOnly: true,
+                secure:true,
+                sameSite:"none"
 
             })
             await userSignup.save();
@@ -68,7 +70,9 @@ app.post('/login', async (req, res) => {
 
         res.cookie("jwt", token, {
             expires: new Date(Date.now() + 86400000),
-            httpOnly: true
+            httpOnly: true,
+            secure:true,
+            sameSite:"none"
 
         })
 
