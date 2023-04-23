@@ -38,8 +38,8 @@ app.post('/signup', async (req, res) => {
 
             res.cookie("jwt", token, {
                 expires: new Date(Date.now() + 86400000),
-                httpOnly: true,
-                secure: true
+                httpOnly: true
+              
             })
             await userSignup.save();
             const obj = userSignup.toObject();
@@ -69,8 +69,8 @@ app.post('/login', async (req, res) => {
 
         res.cookie("jwt", token, {
             expires: new Date(Date.now() + 86400000),
-            httpOnly: true,
-            secure: true
+            httpOnly: true
+           
         })
 
         res.send({ user: { _id: userDoc._id, email: userDoc.email, username: userDoc.username, cart: userDoc.cart, addresses: userDoc.addresses, orders: userDoc.orders }, status: true });
