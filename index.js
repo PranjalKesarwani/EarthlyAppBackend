@@ -39,14 +39,13 @@ app.post('/signup', async (req, res) => {
             res.cookie("jwt", token, {
                 expires: new Date(Date.now() + 86400000),
                 httpOnly: true
-              
+
             })
             await userSignup.save();
             const obj = userSignup.toObject();
             res.status(201).send({ user: { _id: obj._id, email: obj.email, username: obj.username, cart: [], addresses: [], orders: [] }, status: true });
 
-            // res.status(201).send({ user: { _id: '64ee1c91c7fe148db04f0346', email: req.body.email, username: req.body.username, cart: [], addresses: [], orders: [] }, status: true });
-            //   res.status(201).send({user:userSignup.toObject(),status:true});
+
         } else {
             alert('Your password and confirm password is not matching')
         }
@@ -70,7 +69,7 @@ app.post('/login', async (req, res) => {
         res.cookie("jwt", token, {
             expires: new Date(Date.now() + 86400000),
             httpOnly: true
-           
+
         })
 
         res.send({ user: { _id: userDoc._id, email: userDoc.email, username: userDoc.username, cart: userDoc.cart, addresses: userDoc.addresses, orders: userDoc.orders }, status: true });
